@@ -25,7 +25,7 @@ steps:
   displayName: Build
   inputs:
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
-    arguments: --configuration $(BuildConfiguration) --no-restore
+    arguments: --configuration $(BuildConfiguration)
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
