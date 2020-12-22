@@ -1,0 +1,43 @@
+﻿2020-12-21T17:39:32.5322108+08:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2020-12-21T17:39:32.5322108+08:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.5.8 in Framework clr40 in x86 mode execution started
+2020-12-21T17:39:32.5322108+08:00;VSTestExecutionThread;Info;TestAdapter Location: C:\Users\praja\source\repos\SpecFlowAzure\packages\SpecRun.Runner.3.5.8\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2020-12-21T17:39:32.5332093+08:00;VSTestExecutionThread;Info;Current UserName: 'PRAJA', MachineName: 'PC86363'
+2020-12-21T17:39:32.5681586+08:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\praja\source\repos\SpecFlowAzure\SpecFlowAzure\bin\Debug\SpecFlowAzure.dll
+2020-12-21T17:39:32.5681586+08:00;VSTestExecutionThread;Info;Output folder configured to "C:\Users\praja\source\repos\SpecFlowAzure\TestResults" (default)
+2020-12-21T17:39:32.5681586+08:00;VSTestExecutionThread;Info;Profile: 
+2020-12-21T17:39:32.6110437+08:00;VSTestExecutionThread;Info;Log file path: C:\Users\praja\source\repos\SpecFlowAzure\TestResults\Unnamed project__2020-12-21T173932.log
+2020-12-21T17:39:32.6170169+08:00;Thread#15;Info;Checking activation
+2020-12-21T17:39:32.6818116+08:00;Thread#15;Info;Activated.
+2020-12-21T17:39:32.6818116+08:00;Thread#15;Info;Activation check completed
+2020-12-21T17:39:32.6818116+08:00;Thread#15;Info;Starting test run
+2020-12-21T17:39:32.7267594+08:00;Thread#15;Info;Discovering target: Default
+2020-12-21T17:39:32.7267594+08:00;Thread#15;Info;Discovering tests from assembly: C:\Users\praja\source\repos\SpecFlowAzure\SpecFlowAzure\bin\Debug\SpecFlowAzure.dll
+2020-12-21T17:39:33.0773420+08:00;Thread#15;Info;Discovered tests from assembly: C:\Users\praja\source\repos\SpecFlowAzure\SpecFlowAzure\bin\Debug\SpecFlowAzure.dll
+2020-12-21T17:39:33.0783403+08:00:Test Suite Dump
+2020-12-21T17:39:33.0793372+08:00:#0: Unnamed project/ - 
+2020-12-21T17:39:33.0793372+08:00:#1: Default - 
+2020-12-21T17:39:33.0793372+08:00:#2: SpecFlowAzure - 
+2020-12-21T17:39:33.0793372+08:00:#3: Google Search - 
+2020-12-21T17:39:33.1112833+08:00:#4: Page Search - TestAssembly:SpecFlowAzure/Feature:Google+Search/Scenario:Page+Search
+2020-12-21T17:39:33.1112833+08:00:End: Test Suite Dump
+2020-12-21T17:39:33.1292289+08:00:Thread#0:Scheduler: get next test for thread 0
+2020-12-21T17:39:33.1302252+08:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2020-12-21T17:39:33.1302252+08:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2020-12-21T17:39:33.1332180+08:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2020-12-21T17:39:33.1332180+08:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2020-12-21T17:39:33.1332180+08:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2020-12-21T17:39:33.1332180+08:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2020-12-21T17:39:33.1342149+08:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2020-12-21T17:39:33.1352209+08:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2020-12-21T17:39:33.1372128+08:00:Thread #0: creating new test thread executor for SpecFlowAzure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2020-12-21T17:39:33.1382103+08:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2020-12-21T17:39:33.1441637+08:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2020-12-21T17:39:33.1451605+08:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2020-12-21T17:39:33.3715612+08:00:Thread#0:T:-> Loading plugin C:\Users\praja\source\repos\SpecFlowAzure\SpecFlowAzure\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2020-12-21T17:39:33.3805387+08:00:Thread#0:T:-> Using default config
+2020-12-21T17:39:33.8403086+08:00:Thread#0: Test #4/0 is started on thread #0
+2020-12-21T17:39:33.8792038+08:00:Thread#0:B:Given That I am on the Google Search Page
+2020-12-21T17:39:53.2218900+08:00:Thread#0:T:done: DecafyingLibrariySteps.GivenThatIAmOnTheGoogleSearchPage() (19.3s)
+2020-12-21T17:39:53.2248835+08:00:Thread#0:B:When I Search for Edgewords
+2020-12-21T17:39:56.0205465+08:00:Thread#0:T:done: DecafyingLibrariySteps.WhenISearchForEdgewords() (2.8s)
+2020-12-21T17:39:56.0205465+08:00:Thread#0:B:Then I expect to see Edgewords on the first page
