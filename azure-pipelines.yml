@@ -1,41 +1,48 @@
-# ASP.NET Core
-
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- main
-
+- '*'
 
 pool:
-  vmImage: 'Windows-latest'
+vmImage: 'ubuntu-18.04'
+demands:
+- npm
 
 variables:
-  buildConfiguration: 'Release'
+buildConfiguration: 'Release'
+dotnetSdkVersion: '4.7.2'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'Restore project dependencies'
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
+- task: UseDotNet@2
+displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+inputs:
+version: '$(dotnetSdkVersion)'
+
+- task: Npm@1
+displayName: 'Run npm install'
+inputs:
+verbose: false
 
 - task: DotNetCoreCLI@2
-  displayName: 'Build the project - $(buildConfiguration)'
-  inputs:
-    command: 'build'
-    arguments: '--no-restore --configuration $(buildConfiguration)'
-    projects: '**/*.csproj'
+displayName: 'Restore project dependencies'
+inputs:
+command: 'restore'
+projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish the project - $(buildConfiguration)'
-  inputs:
-    command: 'publish'
-    projects: '**/*.csproj'
-    publishWebProjects: false
-    arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
-    zipAfterPublish: true
+displayName: 'Build the project - $(buildConfiguration)'
+inputs:
+command: 'build'
+arguments: '--no-restore --configuration $(buildConfiguration)'
+projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+displayName: 'Publish the project - $(buildConfiguration)'
+inputs:
+command: 'publish'
+projects: '**/*.csproj'
+publishWebProjects: false
+arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
-  displayName: 'publish artifacts'
+displayName: 'Publish Artifact: drop'
+condition: succeeded()
