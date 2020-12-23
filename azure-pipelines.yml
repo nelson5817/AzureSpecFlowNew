@@ -15,31 +15,26 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NugetToolInstaller@1
-  inputs:
-    versionSpec: '5.8.0'
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Restore project dependencies'
   inputs:
     command: 'restore'
-    restoreSolution: 'SpecFlowAzure/SpecFlowAzure/packages.config'
-    feedsToUse: 'config'
-    restoreDirectory: '../packages'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: 'Build the project - $(buildConfiguration)'
   inputs:
     command: 'build'
-    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
-    arguments: --configuration $(BuildConfiguration)
+    arguments: '--no-restore --configuration $(buildConfiguration)'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
-    command: publish
+    command: 'publish'
+    projects: '**/*.csproj'
     publishWebProjects: false
-    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
