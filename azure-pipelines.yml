@@ -14,11 +14,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: Restore
+- task: NuGetCommand@2
   inputs:
-    command: restore
-    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
+    command: pack
+    packagesToPack: '**/*.csproj'
 
       
 - task: DotNetCoreCLI@2
