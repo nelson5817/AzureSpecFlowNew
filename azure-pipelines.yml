@@ -8,14 +8,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  dotnetSdkVersion: '4.7.2'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
-  inputs:
-    version: '$(dotnetSdkVersion)'
-
 - task: Npm@1
   displayName: 'Run npm install'
   inputs:
