@@ -7,6 +7,7 @@
 trigger:
 - main
 
+
 pool:
   vmImage: 'Windows-latest'
 
@@ -14,11 +15,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: NugetToolInstaller@1
+  inputs:
+    versionSpec: '5.8.0'
 
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.csproj'
+    restoreSolution: 'SpecFlowAzure/SpecFlowAzure/packages.config'
+    feedsToUse: 'config'
+    restoreDirectory: '/packages'
 
 - task: DotNetCoreCLI@2
   displayName: Build
