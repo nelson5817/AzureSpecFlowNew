@@ -30,7 +30,7 @@ steps:
     command: publish
     publishWebProjects: false
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
     workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
