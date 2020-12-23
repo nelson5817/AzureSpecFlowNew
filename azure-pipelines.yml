@@ -24,7 +24,7 @@ steps:
     command: 'restore'
     restoreSolution: 'SpecFlowAzure/SpecFlowAzure/packages.config'
     feedsToUse: 'config'
-    restoreDirectory: '/packages'
+    restoreDirectory: 'packages'
 
 - task: DotNetCoreCLI@2
   displayName: Build
