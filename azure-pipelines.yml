@@ -2,19 +2,25 @@ trigger:
 - main
 
 pool:
-  vmImage: 'Windows-latest'
+  vmImage: 'ubuntu-18.04'
+  demands:
+  - npm
 
 variables:
   buildConfiguration: 'Release'
+  dotnetSdkVersion: '4.7.2'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+  inputs:
+    version: '$(dotnetSdkVersion)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
+    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -22,7 +28,6 @@ steps:
     command: 'build'
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
     arguments: --configuration $(BuildConfiguration)
-    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
@@ -32,7 +37,6 @@ steps:
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
     arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
-    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
