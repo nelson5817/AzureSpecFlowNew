@@ -1,48 +1,34 @@
 trigger:
-- '*'
+- main
 
 pool:
-vmImage: 'ubuntu-18.04'
-demands:
-- npm
+  vmImage: 'Windows-latest'
 
 variables:
-buildConfiguration: 'Release'
-dotnetSdkVersion: '4.7.2'
+  buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
-displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
-inputs:
-version: '$(dotnetSdkVersion)'
 
-- task: Npm@1
-displayName: 'Run npm install'
-inputs:
-verbose: false
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-displayName: 'Restore project dependencies'
-inputs:
-command: 'restore'
-projects: '**/*.csproj'
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
+    arguments: --configuration $(BuildConfiguration)
 
 - task: DotNetCoreCLI@2
-displayName: 'Build the project - $(buildConfiguration)'
-inputs:
-command: 'build'
-arguments: '--no-restore --configuration $(buildConfiguration)'
-projects: '**/*.csproj'
-
-- task: DotNetCoreCLI@2
-displayName: 'Publish the project - $(buildConfiguration)'
-inputs:
-command: 'publish'
-projects: '**/*.csproj'
-publishWebProjects: false
-arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
-zipAfterPublish: true
+  displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
-displayName: 'Publish Artifact: drop'
-condition: succeeded()
+  displayName: 'publish artifacts'
