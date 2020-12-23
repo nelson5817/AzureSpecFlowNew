@@ -9,10 +9,12 @@ variables:
 
 steps:
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Restore project dependencies'
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.csproj'
+    projects: '**/*.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -20,6 +22,7 @@ steps:
     command: 'build'
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
     arguments: --configuration $(BuildConfiguration)
+    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
@@ -29,6 +32,7 @@ steps:
     projects: 'SpecFlowAzure/SpecFlowAzure.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
+    workingDirectory: '$(System.DefaultWorkingDirectory)/SpecFlowAzure'
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
